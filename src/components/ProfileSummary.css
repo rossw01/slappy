@@ -1,0 +1,37 @@
+.profile-summary-container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  background-color: #333;
+  width: 15rem;
+  height: fit-content;
+  margin: 1rem 0rem 1rem 1rem;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.profile-summary-icon {
+  border-radius: 90px;
+  width: 125px;
+  height: 125px;
+}
+
+.profile-summary-username {
+  font-size: 24px;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  padding: 0.5rem 0 0 0;
+}
+
+.match-summary-label {
+  font-size: 13px;
+}
+
+.winrate-label {
+  font-size: 14px;
+  font-weight: bold;
+  fill: #9e9eb1;
+}

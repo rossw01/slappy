@@ -1,7 +1,9 @@
 body {
   background-color: #1c1c1f;
 }
-p {
+
+p,
+a {
   font-size: 12px;
   font-weight: 400;
   line-height: 16px;
@@ -43,14 +45,60 @@ p {
   margin: 1rem;
 }
 
-.match-score {
+.match-score-container {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   line-height: 0rem;
   align-items: center;
+  gap: 0.5rem;
+  margin-inline: 0.5rem;
 }
 
-.match-score * {
-  padding: 0;
-  margin: 0.75rem;
+.match-score {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.team-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+}
+
+.server-flag {
+  height: 20px;
+  width: 100%;
+  margin: 0.5rem 0 0.25rem 0;
+}
+
+.user {
+  text-decoration: none;
+}
+
+.user-hl {
+  font-weight: bold;
+  text-decoration: none;
+  color: #ccc;
+}
+
+.match-server-container {
+  text-align: center;
+}
+
+.server-label {
+  margin: 0.5rem;
+}
+
+.mvp {
+  color: white;
+  background-color: #fa0;
+  padding-inline: 0.5rem;
+  line-height: 20px;
+  border-radius: 10px;
 }
