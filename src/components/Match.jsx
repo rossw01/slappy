@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import MatchParticipants from "./MatchParticipants.jsx";
+import MatchShowMoreButton from "./MatchShowMoreButton.jsx";
 import MatchServer from "./MatchServer.jsx";
 import MatchStats from "./MatchStats";
+import MatchAdditionalStats from "./MatchAdditionalStats.jsx";
 import "./Match.css";
 
 const winBgColour = "#28344e";
@@ -11,6 +13,7 @@ const abortBgColour = "#585858";
 const Match = ({ data, myId }) => {
   const players = data?.game_stats?.players || [];
   const myPlayer = players.find((player) => player.game_user_id === myId);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const formatBackgroundColor = (outcome) => {
     if (outcome === "cancelled" || !outcome) {
@@ -92,40 +95,67 @@ const Match = ({ data, myId }) => {
     return isMax;
   };
 
+  const handleExpandClick = () => {
+    setIsExpanded((prev) => !prev);
+  };
+
   return (
-    <div
-      className="match-container"
-      style={{ backgroundColor: formatBackgroundColor(data.outcome) }}
-    >
-      <div>
-        <p className={`p-bold ${formatOutcomeFontColour(data.outcome)}`}>
-          {formatMatchType(data.match_type)}
-        </p>
-        <p>{data.created.substring(0, 10)}</p>
-        {data.outcome && <div className="divider" />}
-        <p className={`p-bold ${formatOutcomeFontColour(data.outcome)}`}>
-          {formatMatchOutcome(data.outcome)}
-        </p>
-        {data.outcome && (
-          <p>{formatMatchTime(data?.game_stats?.match_length)}</p>
+    <div>
+      <div
+        className={`match-container ${
+          isExpanded ? "match-container-open" : ""
+        }`}
+        style={{ backgroundColor: formatBackgroundColor(data.outcome) }}
+      >
+        <div className="col w-100">
+          <div className="match-content">
+            <div>
+              <p className={`p-bold ${formatOutcomeFontColour(data.outcome)}`}>
+                {formatMatchType(data.match_type)}
+              </p>
+              <p>{data.created.substring(0, 10)}</p>
+              {data.outcome && <div className="divider" />}
+              <p className={`p-bold ${formatOutcomeFontColour(data.outcome)}`}>
+                {formatMatchOutcome(data.outcome)}
+              </p>
+              {data.outcome && (
+                <p>{formatMatchTime(data?.game_stats?.match_length)}</p>
+              )}
+            </div>
+            <div className="match-server-container">
+              <MatchServer serverString={data.region} />
+              <p>
+                {data.outcome === "cancelled"
+                  ? "Match Cancelled"
+                  : data?.game_stats?.arena}
+              </p>
+            </div>
+            <MatchStats stats={formatStatsObject()} />
+            <div className="match-score-container">
+              <p className="match-score">{formatScore()}</p>
+              {isMvp() === true && <p className="mvp">MVP</p>}
+            </div>
+            {data.game_stats?.players && (
+              <MatchParticipants
+                players={data.game_stats.players}
+                myId={myId}
+              />
+            )}
+          </div>
+          {isExpanded && (
+            <div>
+              <MatchAdditionalStats players={players} />
+            </div>
+          )}
+        </div>
+        {data.outcome !== "cancelled" && (
+          <MatchShowMoreButton
+            outcome={data.outcome}
+            clickHandler={() => handleExpandClick()}
+            isOpen={isExpanded}
+          />
         )}
       </div>
-      <div className="match-server-container">
-        <MatchServer serverString={data.region} />
-        <p>
-          {data.outcome === "cancelled"
-            ? "Match Cancelled"
-            : data?.game_stats?.arena}
-        </p>
-      </div>
-      <MatchStats stats={formatStatsObject()} />
-      <div className="match-score-container">
-        <p className="match-score">{formatScore()}</p>
-        {isMvp() === true && <p className="mvp">MVP</p>}
-      </div>
-      {data.game_stats?.players && (
-        <MatchParticipants players={data.game_stats.players} myId={myId} />
-      )}
     </div>
   );
 };

@@ -1,0 +1,15 @@
+.show-more-container {
+  display: flex;
+  height: 100%;
+  width: 2rem;
+  align-items: end;
+  box-sizing: border-box;
+  padding-right: 0.1rem;
+  padding-bottom: 0.2rem;
+  justify-content: center;
+  float: inline-end;
+}
+
+.pointer-hover:hover {
+  cursor: pointer;
+}

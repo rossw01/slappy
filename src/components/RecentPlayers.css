@@ -1,0 +1,46 @@
+.recent-players-container {
+  border-radius: 12px;
+  background-color: #333;
+  display: flex;
+  flex-direction: column;
+  width: auto;
+}
+
+.recent-players-header {
+  font-size: 15px;
+  padding: 12px 14px;
+  border-bottom: 1px solid #444;
+}
+
+.players-grid {
+  display: grid;
+  grid-template-columns: 48% 16% 18% 18%;
+  padding: 12px 14px;
+  align-items: center;
+}
+
+.players-grid :not(:first-child) {
+  text-align: center;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Afaik, This has to be *, since we're using Link tags rather
+* than p tags and CSS doesn't know what Link tags are */
+.user * {
+  max-width: 170px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.user-icon {
+  border-radius: 4px;
+  height: 26px;
+  width: 26px;
+  min-width: 26px;
+}

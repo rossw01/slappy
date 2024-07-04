@@ -26,7 +26,7 @@ const MatchServer = ({ serverString }) => {
   };
 
   return (
-    <div className="col">
+    <div className="match-server">
       {parsedServerString[0] === "eu" && <EuLogo className="server-flag" />}
       {parsedServerString[0] === "na" && <NaLogo className="server-flag" />}
       {parsedServerString[0] === "oce" && <OceLogo className="server-flag" />}

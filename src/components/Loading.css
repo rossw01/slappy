@@ -1,0 +1,50 @@
+.loading-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+@keyframes anim-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.anim-rotate {
+  animation: anim-rotate 10s linear infinite;
+}
+
+.loading-label {
+  margin: 2rem;
+  text-align: center;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.home-button {
+  font-size: 12px;
+  border-radius: 4px;
+  padding: 0.5rem;
+  border: none;
+  color: #fff;
+  padding-inline: 0.75rem;
+  background-color: #5383e8;
+}
+
+.home-button:hover {
+  cursor: pointer;
+}
+
+.loading-back-home {
+  margin-top: 2rem;
+  gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

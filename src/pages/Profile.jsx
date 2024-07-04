@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import fetchProfile from "../services/fetchProfile.service";
+import Header from "../components/Header.jsx";
 import Match from "../components/Match.jsx";
+import Loading from "../components/Loading.jsx";
 import ProfileSummary from "../components/ProfileSummary";
 import "./Profile.css";
 
@@ -11,6 +13,7 @@ const Profile = () => {
   const [isLoadComplete, setIsLoadComplete] = useState(false);
 
   useEffect(() => {
+    setIsLoadComplete(false);
     if (!playerId) return;
 
     fetchProfile(playerId)
@@ -66,15 +69,20 @@ const Profile = () => {
   };
 
   return (
-    <div className="profile-container">
-      {isLoadComplete && (
-        <ProfileSummary
-          username={playerInfo.username}
-          matches={playerInfo?.match_history}
-        />
-      )}
-      {isLoadComplete && <div>{buildMatchHistory()}</div>}
-    </div>
+    <>
+      {isLoadComplete && <Header />}
+      {!isLoadComplete && <Loading />}
+      <div className="profile-container">
+        {isLoadComplete && (
+          <ProfileSummary
+            username={playerInfo.username}
+            matches={playerInfo?.match_history}
+            playerId={playerId}
+          />
+        )}
+        {isLoadComplete && <div>{buildMatchHistory()}</div>}
+      </div>
+    </>
   );
 };
 

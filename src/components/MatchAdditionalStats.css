@@ -1,0 +1,42 @@
+.grid-container {
+  overflow-y: auto;
+  height: 300px;
+  display: grid;
+  grid-template-columns: 12% 10% 13% 13% 12% 13% 11% 10%;
+  width: calc(530px - 2.5rem);
+  margin-left: 0.5rem;
+}
+
+.grid-item {
+  text-align: center;
+  padding: 0.25rem;
+  width: 4rem;
+}
+
+.username-label-cell {
+  text-align: right;
+  padding: 0.25rem;
+}
+
+.empty-cell {
+  font-weight: bold;
+}
+
+.label-cell {
+  text-align: center;
+  font-size: 14px;
+}
+
+.username-label-cell p {
+  font-weight: bold;
+}
+
+.label-cell p {
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 580px) {
+  .grid-container {
+    width: calc(430px - 2.5rem);
+  }
+}

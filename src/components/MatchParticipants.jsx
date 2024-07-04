@@ -19,6 +19,19 @@ const MatchParticipants = ({ players, myId }) => {
     setPlayerData(data);
   }, []);
 
+  const formatUsername = (username) => {
+    if (!username) {
+      return "Unknown";
+      // Needed for matches from 2020. They are some bits of data.
+      // Specifically, they don't have 'username' fields for each player.
+    }
+
+    if (username.length > 9) {
+      return username.substring(0, 8) + "..";
+    }
+    return username;
+  };
+
   const handlePlayerClick = (userId) => {
     navigate(`/players/${userId}`);
   };
@@ -37,7 +50,7 @@ const MatchParticipants = ({ players, myId }) => {
               reloadDocument={true}
               className={player.user_id === myId ? "user-hl" : "user"}
             >
-              {player.username} ({player.goals})
+              {formatUsername(player.username)} ({player.goals})
             </Link>
           ))}
         </div>
@@ -50,7 +63,7 @@ const MatchParticipants = ({ players, myId }) => {
               reloadDocument={true}
               className={player.user_id === myId ? "user-hl" : "user"}
             >
-              {player.username} ({player.goals})
+              {formatUsername(player.username)} ({player.goals})
             </Link>
           ))}
         </div>

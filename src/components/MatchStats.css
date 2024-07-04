@@ -1,9 +1,17 @@
 .stat-container {
   margin-left: 0.5rem;
 }
+
 .stat-row {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 0.25rem;
+  min-width: 75px;
+}
+
+@media only screen and (max-width: 580px) {
+  .stat-container {
+    margin-left: 0.5rem;
+  }
 }
